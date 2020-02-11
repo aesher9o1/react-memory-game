@@ -1,14 +1,17 @@
-import React, {useState, useEffect} from 'react';
-
-import './App.css';
+import React, {useState, useEffect} from 'react'
+import Contols from './components/controls'
+import theme from './utils/theme'
+import { ThemeProvider } from 'styled-components';
+/**
+ * Wrappers classes for this component is defined in style.css
+ */
 
 function App() {
-  
   return (
-   <div class = "wrapper">
-    
-   </div>
-  );
+    <ThemeProvider theme={theme}>
+            <Contols/>
+   </ThemeProvider>
+  )
 }
 
 export default App;
