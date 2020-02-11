@@ -9,13 +9,24 @@ body {
   width: 100vw;
   max-width: 100%;
 }
+* {
+  margin: 0;
+  padding: 0;
+}
 
 code {
   font-family: 'Merriweather Sans', sans-serif;
 }
 
-
 .controls-wrapper{
-  height: 10vh;
+  height: 20vh;
   text-align: center;
+  position: relative;;
 }
+
+ul li {
+  display:inline;
+  margin: 0!important;
+  padding: 0 2em 0 2em!important;
+  padding-inline-start: 0!important;
+} 

@@ -7,9 +7,17 @@ import { ThemeProvider } from 'styled-components';
  */
 
 function App() {
+  const [emojiCount, setEmojiCount] = useState(2)
   return (
     <ThemeProvider theme={theme}>
-            <Contols/>
+       <div className= "wrapper">
+          <div className= "controls-wrapper">
+            <Contols setEmojiCount={setEmojiCount}/>
+           </div>asd
+         <div className="cards-wrapper">
+
+         </div>
+       </div>
    </ThemeProvider>
   )
 }
