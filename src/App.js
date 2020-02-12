@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Contols from './components/controls'
 import theme from './utils/theme'
 import { ThemeProvider } from 'styled-components';
+import Cards from './components/cards';
 /**
  * Wrappers classes for this component is defined in style.css
  */
@@ -18,14 +19,10 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-       <div className= "wrapper">
           <div className= "controls-wrapper">
             <Contols increaseEmoji={increaseEmoji} subtractEmoji={subtractEmoji}/>
-           </div>{emojiCount}
-         <div className="cards-wrapper">
-
-         </div>
-       </div>
+           </div>
+          <Cards emojiCount = {emojiCount}/>
    </ThemeProvider>
   )
 }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { withTheme } from 'styled-components';
-import styled from 'styled-components'
+import styled, {withTheme} from 'styled-components'
 
 const FloatingLayout = styled.div`
 background : ${props => props.theme.colorSeconday};
