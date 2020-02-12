@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
-import styled, {withTheme} from 'styled-components'
+import React, { useState, useEffect } from 'react'
+import styled, { withTheme } from 'styled-components'
+import { checkCardLimits } from '../utils/repository'
 
 const FloatingLayout = styled.div`
 background : ${props => props.theme.colorSeconday};
@@ -38,11 +39,11 @@ function Controls(props) {
         return (i < 10) ? `0${i}` : i
     }
 
-    const getMinuteString= (seconds)=>{
+    const getMinuteString = (seconds) => {
         const m = padZeros(Math.floor(seconds / 60))
-        const s = padZeros(seconds %60)
+        const s = padZeros(seconds % 60)
 
-        return m + ":"+s
+        return m + ":" + s
     }
 
     useEffect(() => {
@@ -52,26 +53,39 @@ function Controls(props) {
         return () => clearInterval(interval);
     }, []);
 
-    const handleEmojiDecrease = ()=>{
-        setSeconds(0)
-        props.setEmojiCount(emoji=>emoji-1)
+    const handleEmojiDecrease = () => {
+
+        props.setEmojiCount(emoji => {
+            if (checkCardLimits(emoji - 1)) {
+                setSeconds(0)
+                return emoji - 1
+            }
+            else
+                return emoji
+        })
     }
-    const handleEmojiIncrease = ()=>{
-        setSeconds(0)
-        props.setEmojiCount(emoji=>emoji+1)
+    const handleEmojiIncrease = () => {
+        props.setEmojiCount(emoji => {
+            if (checkCardLimits(emoji + 1)) {
+                setSeconds(0)
+                return emoji + 1
+            }
+            else
+                return emoji
+        })
     }
 
     return (<FloatingLayout>
         <ul>
             <li>
                 <EmojiButton onClick={handleEmojiDecrease}>⛔️</EmojiButton>
-               </li>
-            <li style={{width:"140px"}}>
-            &nbsp;&nbsp;&nbsp;{getMinuteString(seconds)}&nbsp;&nbsp;&nbsp;
+            </li>
+            <li style={{ width: "140px" }}>
+                &nbsp;&nbsp;&nbsp;{getMinuteString(seconds)}&nbsp;&nbsp;&nbsp;
             </li>
             <li>
                 <EmojiButton onClick={handleEmojiIncrease}>➕</EmojiButton>
-               </li>
+            </li>
         </ul>
     </FloatingLayout>)
 }

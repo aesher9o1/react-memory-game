@@ -1,13 +1,14 @@
-export const  EmojiRepository = [
+const CARD_UPPER_LIMIT = 16
+const CARD_LOWER_LIMIT = 4
+
+export const EmojiRepository = [
     "🐷",
     "🦉",
-    "🦍",
     "🐏",
     "🦌",
     "🐿",
     "🦔",
     "🦃",
-    "🕊",
     "🦛",
     "🐪",
     "🦀",
@@ -43,16 +44,22 @@ export const LIMIT_HIGH = "Woahh!!! Slow down cowboy🤙"
 export const LIMIT_LOW = "Are you sure you want to play?😑"
 
 export function SHUFFLE_ARRAY(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;  
+    var currentIndex = array.length,
+        temporaryValue, randomIndex;
     while (0 !== currentIndex) {
-  
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
 
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
     }
-  
+
     return array;
-  }
+}
+
+export const checkCardLimits = (presentCardCount) => {
+    console.log(presentCardCount)
+    return (presentCardCount < CARD_LOWER_LIMIT || presentCardCount > CARD_UPPER_LIMIT) ? false : true
+}

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Contols from './components/controls'
 import theme from './utils/theme'
 import { ThemeProvider } from 'styled-components';
@@ -11,11 +11,11 @@ function App() {
   const [emojiCount, setEmojiCount] = useState(4)
   return (
     <ThemeProvider theme={theme}>
-          <div className= "controls-wrapper">
-            <Contols setEmojiCount={setEmojiCount} />
-           </div>
-          <Cards emojiCount = {emojiCount}/>
-   </ThemeProvider>
+      <div className="controls-wrapper">
+        <Contols setEmojiCount={setEmojiCount} />
+      </div>
+      <Cards emojiCount={emojiCount} />
+    </ThemeProvider>
   )
 }
 
