@@ -17,6 +17,12 @@ const SnackbarBody = styled.div`
   left: 50%;
   bottom: 30px;
   font-size: 1rem;
+
+  &.show {
+    visibility: visible !important;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
 `
 
 function Snackbar(props) {

@@ -4,14 +4,21 @@ import { EmojiRepository, SHUFFLE_ARRAY } from '../utils/repository'
 
 
 const Card = styled.div`
-background : ${props => props.theme.colorSeconday};
-box-shadow : ${props => props.theme.primaryBoxShadow};
-border-radius:${props => props.theme.radius};
-padding: ${props => props.theme.padding};
-color: white;
-padding: 1rem;
-height: 4rem;
-cursor: pointer;
+    background : ${props => props.theme.colorSeconday};
+    box-shadow : ${props => props.theme.primaryBoxShadow};
+    border-radius:${props => props.theme.radius};
+    padding: ${props => props.theme.padding};
+    color: white;
+    padding: 1rem;
+    height: 4rem;
+    cursor: pointer;
+    user-select: none;
+    transition: all .3s;
+    
+      &:active{
+        transform: scale(0.95);
+        transition: transform .3s;
+    }
 `
 
 
@@ -39,7 +46,9 @@ function Cards(props) {
         const temp = []
         for (var i = 0; i < cards.length; i++) {
             temp.push(
-                <Card key={i}>{cards[i].emoji}</Card>
+                <Card key={i} onClick={(e) => { e.target.classList.add('flip') }}>
+                    <span role="img">{cards[i].emoji}</span>
+                </Card>
             )
         }
         return temp

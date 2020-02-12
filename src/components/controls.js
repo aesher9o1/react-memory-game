@@ -7,7 +7,7 @@ background : ${props => props.theme.colorSeconday};
 box-shadow : ${props => props.theme.primaryBoxShadow};
 display: block;
 position: absolute;
-width:260px!important;
+width:250px!important;
 margin:auto;
 left:0;
 right:0;
