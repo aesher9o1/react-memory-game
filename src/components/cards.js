@@ -39,14 +39,14 @@ function Cards(props) {
         const temp = []
         for (var i = 0; i < cards.length; i++) {
             temp.push(
-                <Card>{cards[i].emoji}</Card>
+                <Card key={i}>{cards[i].emoji}</Card>
             )
         }
         return temp
     }
 
     return (
-        <div class="cards-wrapper">
+        <div className="cards-wrapper">
             {makeCard()}
         </div>
     )

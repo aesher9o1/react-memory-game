@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled, { withTheme } from 'styled-components'
-import { checkCardLimits } from '../utils/repository'
+import { checkCardLimits, LIMIT_HIGH, LIMIT_LOW } from '../utils/repository'
 
 const FloatingLayout = styled.div`
 background : ${props => props.theme.colorSeconday};
@@ -60,8 +60,10 @@ function Controls(props) {
                 setSeconds(0)
                 return emoji - 1
             }
-            else
+            else {
+                props.showSnackbar(LIMIT_LOW)
                 return emoji
+            }
         })
     }
     const handleEmojiIncrease = () => {
@@ -70,8 +72,10 @@ function Controls(props) {
                 setSeconds(0)
                 return emoji + 1
             }
-            else
+            else {
+                props.showSnackbar(LIMIT_HIGH)
                 return emoji
+            }
         })
     }
 
