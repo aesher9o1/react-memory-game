@@ -25,19 +25,13 @@ code {
 }
 
 .cards-wrapper{
-  max-width: 1200px;
+  max-width: 1300px;
+  padding: 2em 2em 0 2em;
   margin: 0 auto;
   display: grid;
   grid-gap: 1rem;
 }
 
-@media (min-width: 600px) {
-  .cards-wrapper { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (min-width: 900px) {
-  .cards-wrapper { grid-template-columns: repeat(3, 1fr); }
-}
 
 ul li {
   display:inline;
@@ -48,3 +42,30 @@ ul li {
   font-family: 'Merriweather Sans', sans-serif;
   font-weight: 900;
 } 
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .cards-wrapper { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .cards-wrapper { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .cards-wrapper { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .cards-wrapper { grid-template-columns: repeat(6, 1fr); }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .cards-wrapper { grid-template-columns: repeat(8, 1fr); }
+}

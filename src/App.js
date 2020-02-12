@@ -8,19 +8,11 @@ import Cards from './components/cards';
  */
 
 function App() {
-  const [emojiCount, setEmojiCount] = useState(2)
-
-  const increaseEmoji=()=>{
-    setEmojiCount(emojiCount+1)
-  }
-  const subtractEmoji=()=>{
-    setEmojiCount(emojiCount-1)
-  }
-
+  const [emojiCount, setEmojiCount] = useState(4)
   return (
     <ThemeProvider theme={theme}>
           <div className= "controls-wrapper">
-            <Contols increaseEmoji={increaseEmoji} subtractEmoji={subtractEmoji}/>
+            <Contols setEmojiCount={setEmojiCount} />
            </div>
           <Cards emojiCount = {emojiCount}/>
    </ThemeProvider>

@@ -52,17 +52,25 @@ function Controls(props) {
         return () => clearInterval(interval);
     }, []);
 
+    const handleEmojiDecrease = ()=>{
+        setSeconds(0)
+        props.setEmojiCount(emoji=>emoji-1)
+    }
+    const handleEmojiIncrease = ()=>{
+        setSeconds(0)
+        props.setEmojiCount(emoji=>emoji+1)
+    }
 
     return (<FloatingLayout>
         <ul>
             <li>
-                <EmojiButton onClick={props.subtractEmoji}>⛔️</EmojiButton>
+                <EmojiButton onClick={handleEmojiDecrease}>⛔️</EmojiButton>
                </li>
             <li style={{width:"140px"}}>
             &nbsp;&nbsp;&nbsp;{getMinuteString(seconds)}&nbsp;&nbsp;&nbsp;
             </li>
             <li>
-                <EmojiButton onClick={props.increaseEmoji}>➕</EmojiButton>
+                <EmojiButton onClick={handleEmojiIncrease}>➕</EmojiButton>
                </li>
         </ul>
     </FloatingLayout>)

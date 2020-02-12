@@ -1,30 +1,55 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import styled, { withTheme } from 'styled-components'
+import {EmojiRepository, SHUFFLE_ARRAY} from '../utils/repository'
 
 
 const Card = styled.div`
-background-color: dodgerblue;
+background : ${props => props.theme.colorSeconday};
+box-shadow : ${props => props.theme.primaryBoxShadow};
+border-radius:${props => props.theme.radius};
+padding: ${props => props.theme.padding};
 color: white;
 padding: 1rem;
 height: 4rem;
-
+cursor: pointer;
 `
 
 
-function Cards() {
+function Cards(props) {
+    const [cards,setCards] = useState([])
+
+
+    useEffect(()=>{
+        const temp = []
+        for(var i=0;i<props.emojiCount;i++){
+            temp.push({
+                emoji:EmojiRepository[i],
+                isActive:false
+            })
+            temp.push({
+                emoji:EmojiRepository[i],
+                isActive:false
+            })
+        } 
+        setCards(SHUFFLE_ARRAY(temp))
+    },[props.emojiCount])
+    
+    
+    const makeCard = ()=>{
+        const temp=[]
+        for(var i=0;i<cards.length;i++){
+            temp.push(
+            <Card>{cards[i].emoji}</Card>
+            )
+        }
+        return temp
+    }
+
     return (
         <div class="cards-wrapper">
-  <Card>1</Card>
-  <Card>2</Card>
-  <Card>3</Card>
-  <Card>4</Card>
-  <Card>5</Card>
-  <Card>6</Card>
-  <Card>7</Card>
-  <Card>8</Card>
-  <Card>9</Card>
-</div>
-        )
+          {makeCard()}
+        </div>
+    )
 }
 
 export default withTheme(Cards)

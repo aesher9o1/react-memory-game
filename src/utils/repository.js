@@ -41,3 +41,18 @@ export const NEGATIVE_REINFORCEMENTS = [
 
 export const LIMIT_HIGH = "Woahh!!! Slow down cowboy🤙"
 export const LIMIT_LOW = "Are you sure you want to play?😑"
+
+export function SHUFFLE_ARRAY(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;  
+    while (0 !== currentIndex) {
+  
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
