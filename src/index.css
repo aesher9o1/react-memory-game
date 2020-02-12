@@ -27,6 +27,9 @@ code {
 ul li {
   display:inline;
   margin: 0!important;
-  padding: 0 2em 0 2em!important;
   padding-inline-start: 0!important;
+  font-size: 1.5rem;
+  color: white;
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: 900;
 } 

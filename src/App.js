@@ -8,12 +8,20 @@ import { ThemeProvider } from 'styled-components';
 
 function App() {
   const [emojiCount, setEmojiCount] = useState(2)
+
+  const increaseEmoji=()=>{
+    setEmojiCount(emojiCount+1)
+  }
+  const subtractEmoji=()=>{
+    setEmojiCount(emojiCount-1)
+  }
+
   return (
     <ThemeProvider theme={theme}>
        <div className= "wrapper">
           <div className= "controls-wrapper">
-            <Contols setEmojiCount={setEmojiCount}/>
-           </div>asd
+            <Contols increaseEmoji={increaseEmoji} subtractEmoji={subtractEmoji}/>
+           </div>{emojiCount}
          <div className="cards-wrapper">
 
          </div>
