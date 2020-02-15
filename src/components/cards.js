@@ -32,7 +32,7 @@ function Cards(props) {
 
   useEffect(() => {
     const temp = []
-    for (let i = 0; i < emojiCount; i + 1) {
+    for (let i = 0; i < emojiCount; i++) {
       temp.push({
         emoji: EmojiRepository[i],
         isActive: false
@@ -47,7 +47,7 @@ function Cards(props) {
 
   const makeCard = () => {
     const temp = []
-    for (let i = 0; i < cards.length; i + 1) {
+    for (let i = 0; i < cards.length; i++) {
       temp.push(
         <Card
           key={i}
