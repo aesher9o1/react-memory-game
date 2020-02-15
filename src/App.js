@@ -37,7 +37,7 @@ function App() {
       <div className="controls-wrapper">
         <Contols setEmojiCount={setEmojiCount} showSnackbar={showSnackbar} />
       </div>
-      <Cards emojiCount={emojiCount} />
+      <Cards emojiCount={emojiCount} showSnackbar={showSnackbar} />
       <Snackbar isActive={snackbarState.isActive} message={snackbarState.message} />
     </ThemeProvider>
   )
