@@ -34,6 +34,7 @@ const EmojiButton = styled.button`
 
 function Controls(props) {
   const [seconds, setSeconds] = useState(0)
+  const { shouldTimerRun } = props
 
   const padZeros = (i) => {
     return i < 10 ? `0${i}` : i
@@ -50,13 +51,17 @@ function Controls(props) {
     const interval = setInterval(() => {
       setSeconds(seconds + 1)
     }, 1000)
+
+    if (!shouldTimerRun) clearInterval(interval)
+
     return () => clearInterval(interval)
-  }, [seconds])
+  }, [seconds, shouldTimerRun])
 
   const handleEmojiDecrease = () => {
     props.setEmojiCount((emoji) => {
       if (checkCardLimits(emoji - 1)) {
         setSeconds(0)
+        props.setShouldTimerRun(true)
         return emoji - 1
       }
       props.showSnackbar(LIMIT_LOW)
@@ -67,6 +72,7 @@ function Controls(props) {
     props.setEmojiCount((emoji) => {
       if (checkCardLimits(emoji + 1)) {
         setSeconds(0)
+        props.setShouldTimerRun(true)
         return emoji + 1
       }
       props.showSnackbar(LIMIT_HIGH)
@@ -101,12 +107,16 @@ function Controls(props) {
 
 Controls.propTypes = {
   showSnackbar: PropTypes.func,
-  setEmojiCount: PropTypes.func
+  setEmojiCount: PropTypes.func,
+  setShouldTimerRun: PropTypes.func,
+  shouldTimerRun: PropTypes.bool
 }
 
 Controls.defaultProps = {
   showSnackbar: null,
-  setEmojiCount: null
+  setEmojiCount: null,
+  setShouldTimerRun: null,
+  shouldTimerRun: true
 }
 
 export default withTheme(Controls)

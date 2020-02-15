@@ -42,6 +42,7 @@ function Cards(props) {
   const [cards, setCards] = useState([])
   // eslint-disable-next-line no-unused-vars
   const [firstSelectedItem, setFirstSelectedItem] = useState(null)
+  const [score, setScore] = useState(0)
   const { emojiCount } = props
 
   useEffect(() => {
@@ -74,7 +75,7 @@ function Cards(props) {
       setFirstSelectedItem(null)
 
       props.showSnackbar(MESSAGE_SAME_CARD)
-    } else if (firstSelectedItem) {
+    } else if (firstSelectedItem || firstSelectedItem === 0) {
       if (cards[firstSelectedItem].emoji === cards[index].emoji) {
         // right answer select current and first item to unclickable
         cardsCopy[firstSelectedItem] = {
@@ -88,18 +89,29 @@ function Cards(props) {
           canBeClicked: false
         }
         setCards(cardsCopy)
+        setScore(score + 1)
 
         props.showSnackbar(
           POSITIVE_REINFORCEMENTS[
             Math.floor(Math.random() * POSITIVE_REINFORCEMENTS.length)
           ]
         )
+        setFirstSelectedItem(null)
+
+        // game over
+        if (score === emojiCount - 1) props.setShouldTimerRun(false)
       } else {
         // wrong answer disable both
         cardsCopy[firstSelectedItem] = {
           ...cardsCopy[firstSelectedItem],
           isActive: false
         }
+
+        cardsCopy[index] = {
+          ...cardsCopy[index],
+          isActive: true
+        }
+
         setCards(cardsCopy)
 
         props.showSnackbar(
@@ -108,8 +120,7 @@ function Cards(props) {
           ]
         )
       }
-
-      setFirstSelectedItem(null)
+      setFirstSelectedItem(index)
     } else {
       // set first selected card
       cardsCopy[index] = { ...cardsCopy[index], isActive: true }
@@ -146,12 +157,14 @@ function Cards(props) {
 
 Cards.propTypes = {
   emojiCount: PropTypes.number,
-  showSnackbar: PropTypes.func
+  showSnackbar: PropTypes.func,
+  setShouldTimerRun: PropTypes.func
 }
 
 Cards.defaultProps = {
   emojiCount: 4,
-  showSnackbar: null
+  showSnackbar: null,
+  setShouldTimerRun: null
 }
 
 export default withTheme(Cards)

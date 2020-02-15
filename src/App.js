@@ -11,6 +11,7 @@ import Snackbar from './components/snackbar'
 
 function App() {
   const [emojiCount, setEmojiCount] = useState(4)
+  const [shouldTimerRun, setShouldTimerRun] = useState(true)
   const [snackbarState, setSnackbarState] = useState({
     isActive: false,
     message: 'demo'
@@ -35,9 +36,18 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="controls-wrapper">
-        <Contols setEmojiCount={setEmojiCount} showSnackbar={showSnackbar} />
+        <Contols
+          setEmojiCount={setEmojiCount}
+          showSnackbar={showSnackbar}
+          setShouldTimerRun={setShouldTimerRun}
+          shouldTimerRun={shouldTimerRun}
+        />
       </div>
-      <Cards emojiCount={emojiCount} showSnackbar={showSnackbar} />
+      <Cards
+        emojiCount={emojiCount}
+        showSnackbar={showSnackbar}
+        setShouldTimerRun={setShouldTimerRun}
+      />
       <Snackbar isActive={snackbarState.isActive} message={snackbarState.message} />
     </ThemeProvider>
   )
