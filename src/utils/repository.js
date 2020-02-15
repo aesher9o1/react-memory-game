@@ -39,7 +39,7 @@ export const NEGATIVE_REINFORCEMENTS = [
   'You droped 🧠 in the backyard'
 ]
 
-export const MESSAGE_SAME_CARD = ['What\'s up doc?🐰']
+export const MESSAGE_SAME_CARD = ["What's up doc?🐰"]
 
 export const LIMIT_HIGH = 'Woahh!!! Slow down cowboy 🤙'
 export const LIMIT_LOW = 'Are you sure you want to play? 😑'

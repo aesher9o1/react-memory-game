@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import styled, { withTheme } from 'styled-components'
 import PropTypes from 'prop-types'
-import { EmojiRepository, SHUFFLE_ARRAY, MESSAGE_SAME_CARD, POSITIVE_REINFORCEMENTS, NEGATIVE_REINFORCEMENTS } from '../utils/repository'
+import {
+  EmojiRepository,
+  SHUFFLE_ARRAY,
+  MESSAGE_SAME_CARD,
+  POSITIVE_REINFORCEMENTS,
+  NEGATIVE_REINFORCEMENTS
+} from '../utils/repository'
 
 const Card = styled.div`
   background: ${(props) => props.theme.colorSeconday};
@@ -13,7 +19,7 @@ const Card = styled.div`
   height: 4rem;
   text-align: center;
   cursor: pointer;
-  transform : scale(1);
+  transform: scale(1);
   user-select: none;
   transition: all 0.3s;
 
@@ -22,16 +28,15 @@ const Card = styled.div`
     transition: transform 0.3s;
   }
 
-  &.selected{
-    box-shadow: none!important;
-    background:#47cf73;
+  &.selected {
+    box-shadow: none !important;
+    background: #47cf73;
     transform: scale(0.95);
   }
 `
 const Emoji = styled.span`
   font-size: 2rem;
 `
-
 
 function Cards(props) {
   const [cards, setCards] = useState([])
@@ -56,44 +61,62 @@ function Cards(props) {
     setCards(SHUFFLE_ARRAY(temp))
   }, [emojiCount])
 
-
   const handleCardClick = (index) => {
-    const cardsCopy = [...cards];
+    const cardsCopy = [...cards]
 
     if (firstSelectedItem === index || !cards[index].canBeClicked) {
       // card that was revealed was clicked
-      cardsCopy[firstSelectedItem] = { ...cardsCopy[firstSelectedItem], isActive: false }
+      cardsCopy[firstSelectedItem] = {
+        ...cardsCopy[firstSelectedItem],
+        isActive: false
+      }
       setCards(cardsCopy)
       setFirstSelectedItem(null)
 
       props.showSnackbar(MESSAGE_SAME_CARD)
-
     } else if (firstSelectedItem) {
       if (cards[firstSelectedItem].emoji === cards[index].emoji) {
         // right answer select current and first item to unclickable
-        cardsCopy[firstSelectedItem] = { ...cardsCopy[firstSelectedItem], isActive: true, canBeClicked: false }
-        cardsCopy[index] = { ...cardsCopy[index], isActive: true, canBeClicked: false }
+        cardsCopy[firstSelectedItem] = {
+          ...cardsCopy[firstSelectedItem],
+          isActive: true,
+          canBeClicked: false
+        }
+        cardsCopy[index] = {
+          ...cardsCopy[index],
+          isActive: true,
+          canBeClicked: false
+        }
         setCards(cardsCopy)
 
-        props.showSnackbar(POSITIVE_REINFORCEMENTS[Math.floor((Math.random() * POSITIVE_REINFORCEMENTS.length))])
+        props.showSnackbar(
+          POSITIVE_REINFORCEMENTS[
+            Math.floor(Math.random() * POSITIVE_REINFORCEMENTS.length)
+          ]
+        )
       } else {
         // wrong answer disable both
-        cardsCopy[firstSelectedItem] = { ...cardsCopy[firstSelectedItem], isActive: false }
+        cardsCopy[firstSelectedItem] = {
+          ...cardsCopy[firstSelectedItem],
+          isActive: false
+        }
         setCards(cardsCopy)
 
-        props.showSnackbar(NEGATIVE_REINFORCEMENTS[Math.floor((Math.random() * NEGATIVE_REINFORCEMENTS.length))])
+        props.showSnackbar(
+          NEGATIVE_REINFORCEMENTS[
+            Math.floor(Math.random() * NEGATIVE_REINFORCEMENTS.length)
+          ]
+        )
       }
 
       setFirstSelectedItem(null)
     } else {
       // set first selected card
-      cardsCopy[index] = { ...cardsCopy[index], isActive: true };
-      setCards(cardsCopy);
+      cardsCopy[index] = { ...cardsCopy[index], isActive: true }
+      setCards(cardsCopy)
 
       setFirstSelectedItem(index)
     }
-
-
   }
 
   const makeCard = () => {
@@ -101,12 +124,17 @@ function Cards(props) {
     for (let i = 0; i < cards.length; i++) {
       temp.push(
         <Card
-          className={(cards[i].isActive || !cards[i].canBeClicked) ? "selected" : ""}
+          className={cards[i].isActive || !cards[i].canBeClicked ? 'selected' : ''}
           key={i}
           onClick={() => {
             handleCardClick(i)
-          }}>
-          {(cards[i].isActive || !cards[i].canBeClicked) ? <Emoji role="img">{cards[i].emoji}</Emoji> : <div />}
+          }}
+        >
+          {cards[i].isActive || !cards[i].canBeClicked ? (
+            <Emoji role="img">{cards[i].emoji}</Emoji>
+          ) : (
+            <div />
+          )}
         </Card>
       )
     }
