@@ -23,7 +23,6 @@ code {
   height: 20vh;
   text-align: center;
   position: relative;
-  ;
 }
 
 .cards-wrapper {
@@ -34,7 +33,6 @@ code {
   grid-gap: 1rem;
 }
 
-
 ul li {
   display: inline;
   margin: 0 !important;
@@ -44,8 +42,6 @@ ul li {
   font-family: 'Merriweather Sans', sans-serif;
   font-weight: 900;
 }
-
-
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
@@ -81,9 +77,6 @@ ul li {
     grid-template-columns: repeat(8, 1fr);
   }
 }
-
-
-
 
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {

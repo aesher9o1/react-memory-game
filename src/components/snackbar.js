@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled, { withTheme } from 'styled-components'
 
 const SnackbarBody = styled.div`
@@ -7,10 +8,10 @@ const SnackbarBody = styled.div`
   margin-left: -125px;
   color: #fff;
   text-align: center;
-  background : ${props => props.theme.colorSeconday};
-  box-shadow : ${props => props.theme.primaryBoxShadow};
-  border-radius:${props => props.theme.radius};
-  padding: ${props => props.theme.padding};
+  background: ${(props) => props.theme.colorSeconday};
+  box-shadow: ${(props) => props.theme.primaryBoxShadow};
+  border-radius: ${(props) => props.theme.radius};
+  padding: ${(props) => props.theme.padding};
   padding: 16px;
   position: fixed;
   z-index: 1;
@@ -26,11 +27,19 @@ const SnackbarBody = styled.div`
 `
 
 function Snackbar(props) {
-    return (
-        <SnackbarBody className={props.isActive ? "show" : ""}>
-            {props.message}
-        </SnackbarBody>
-    )
+  const { isActive, message } = props
+
+  return <SnackbarBody className={isActive ? 'show' : ''}>{message}</SnackbarBody>
+}
+
+Snackbar.propTypes = {
+  isActive: PropTypes.bool,
+  message: PropTypes.string
+}
+
+Snackbar.defaultProps = {
+  isActive: false,
+  message: ''
 }
 
 export default withTheme(Snackbar)
